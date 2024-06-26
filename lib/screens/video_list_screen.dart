@@ -27,6 +27,9 @@ class VideoListScreen extends StatelessWidget {
                 final video = videoProvider.videos[index];
                 return VideoTile(
                   video: video,
+                  onDelete: () {
+                    videoProvider.removeVideo(video.id);
+                  },
                   onTap: () {
                     Navigator.push(
                         context,

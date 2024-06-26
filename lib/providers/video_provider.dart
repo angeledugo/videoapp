@@ -19,6 +19,16 @@ class VideoProvider with ChangeNotifier {
 
   // Metodo para enviar el video a la api
   Future<bool> uploadVideo(File videoFile) async {
-    return await _apiService.uploadVideo(videoFile);
+    await _apiService.uploadVideo(videoFile);
+    await fetchVideos();
+    notifyListeners();
+    return true;
+  }
+
+  // Metodo para remover el video
+  Future<void> removeVideo(int id) async {
+    await _apiService.deleteVideo(id);
+    _videos.removeWhere((video) => video.id == id);
+    notifyListeners();
   }
 }

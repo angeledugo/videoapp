@@ -29,4 +29,12 @@ class ApiService {
 
     return response.statusCode == 200;
   }
+
+  Future<void> deleteVideo(int id) async {
+    final response = await http.delete(Uri.parse('$apiUrl/$id'));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete video');
+    }
+  }
 }
